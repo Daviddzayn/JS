@@ -1,0 +1,42 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+      <form>
+            Name:  <input type="text" id="name">
+           <button type="submit">Submit</button>
+      </form>
+      <div>
+          
+      </div>
+
+      <script>
+          let name_box = document.querySelector("#name")
+          let btn = document.querySelector("button")
+          let divSection = document.querySelector("div")
+
+          btn.addEventListener("click", display)
+          
+          function display(e){
+              e.preventDefault()
+
+              let para = document.createElement("p") 
+              para.innerText = name_box.value
+            //   divSection.prepend(para)
+            divSection.append(para)
+
+            
+            name_box.value = ""
+             
+          }
+
+      </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+      Amount: <input type="text" id="amount">
+      <button> Calculate Tip</button>
+
+      <p class="output"></p>
+    
+
+
+      <script>
+        let inputBox = document.querySelector("#amount")
+        console.log("initial", inputBox.value)
+
+        let btn = document.querySelector("button")
+
+        let output = document.querySelector(".output")
+
+        
+
+        // console.log(btn)
+
+
+        // addEventListener
+
+        btn.addEventListener("click",  calculateTip)
+
+
+        function calculateTip() {
+            // console.log("Button clicked")
+            // console.log("inside", typeof(inputBox.value))
+            let amount = Number(inputBox.value)
+            let tipAmount = amount * 5/100
+            console.log("Tip Amount", tipAmount)
+            output.innerText = `Tip Amount: ${tipAmount}`
+        }
+
+
+
+
+
+      </script>
+</body>
+</html>

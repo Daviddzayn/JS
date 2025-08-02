@@ -1,0 +1,68 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        User: <span class="userScore">0</span>
+        Computer: <span class="compScore">0</span>
+    </div>
+    <button id="head"> Head </button>
+    <button id="tail"> Tail </button>
+
+    <script>
+         let btns = document.querySelectorAll("button") // [<btn>, <btn>]
+         let userScoreSpan = document.querySelector(".userScore")
+         let compScoreSpan = document.querySelector(".compScore")
+
+         //click:
+
+        //  console.log(btns)
+    //   btns[0].addEventListener("click", toss)
+    //   btns[1].addEventListener("click", toss)
+
+    for(let t of btns){
+        t.addEventListener("click", toss)
+    }
+
+    // function addEventListener(p1, toss){
+
+    //     toss(eventObj)
+    // }
+
+    function toss(eventObj){
+        // console.log("someone clicked me", eventObj.target)
+        let currentBtn = eventObj.target
+        let userChoice = currentBtn.id
+        console.log("User Choice", userChoice)
+
+        // toss a coin
+        // let arr = ["Apple", "Banana", "Orange", "Guava", "Mango"]
+        // let randomIndex = parseInt(Math.random()*5) // 0-5 (0 - 4.999999) => 0 - 4
+        // console.log(randomIndex, arr[randomIndex])
+        let arr = ["head", "tail"]
+        let randomIndex = parseInt(Math.random()*arr.length)
+        let toosResult = arr[randomIndex]
+        console.log(toosResult)
+
+        if(userChoice.toLowerCase() == toosResult.toLowerCase()){
+         
+            userScoreSpan.innerText  = +userScoreSpan.innerText + 1
+        }
+        else{
+            compScoreSpan.innerText = +compScoreSpan.innerText + 1
+        }
+
+    }
+
+
+
+
+    </script>
+</body>
+</html>

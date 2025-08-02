@@ -1,0 +1,40 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <div>
+    <p> A </p>
+    <p> B </p>
+    <p> C </p>
+    <p> D </p>
+    <p> E </p>
+  </div>
+
+     <button id="btn"> Click </button>
+
+     <script>
+         let paraArr1 = document.querySelectorAll("p") // NodeList => Not Live
+         let paraArr2 = document.getElementsByTagName("p") // HTMLCollection => Live
+
+         let divSection = document.querySelector("div")
+
+         let btn = document.getElementById("btn")
+
+         btn.addEventListener("click", addPara)
+
+         function addPara(){
+             let para = document.createElement("p")
+             para.innerText = "Apple"
+             divSection.append(para)
+         }
+         
+         
+     </script>
+</body>
+</html> 

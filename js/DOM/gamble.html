@@ -1,0 +1,154 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div class="gamers">
+        <div>
+            Person1: <input type="text"  value="Prashant"> 
+            <button id="btn1" class="rollTheDice"> Roll the Dice </button>
+            <span> 0 </span>
+        </div>
+        <div>
+           Person2: <input type="text"  value="Kunal"> 
+           <button id="btn2" class="rollTheDice"> Roll the Dice </button>
+           <span> 0 </span>
+       </div>
+       <div>
+           Person3: <input type="text"  value="Faisal"> 
+           <button id="btn3" class="rollTheDice"> Roll the Dice </button>
+           <span> 0 </span>
+       </div>
+       <div>
+           Person4: <input type="text"  value="Vishal"> 
+           <button id="btn4" class="rollTheDice"> Roll the Dice </button>
+           <span> 0 </span>
+       </div>
+       <div>
+           Person5: <input type="text"  value="Manish"> 
+           <button id="btn5" class="rollTheDice"> Roll the Dice </button>
+           <span> 0 </span>
+       </div>
+    </div>
+
+    <button id="newGamer"> Add a New Gamer</button>
+    
+    <button id="endBtn"> End Game </button>
+
+    <div class="winMessage">
+
+    </div>
+
+
+    <script> 
+       let personBox = document.getElementsByName("input")
+       let rollTheDiceBtn = document.querySelectorAll(".rollTheDice")
+       let scoreSpan = document.querySelectorAll("span")
+
+       let endGameBtn = document.querySelector("#endBtn")
+       let winMessageDiv = document.querySelector(".winMessage")
+
+       let newGamerBtn = document.querySelector("#newGamer")
+
+       endGameBtn.disabled = true
+
+
+      for(let t of rollTheDiceBtn){
+          t.addEventListener("click", rollTheDice)
+      }
+     let clickCounter = 0
+      function rollTheDice(e){
+         let currentBtn = e.target 
+         clickCounter++
+         if(clickCounter == 5){
+             endGameBtn.disabled = false
+         }
+         let curentBtnIndex = +currentBtn.id.slice(3)-1
+         console.log(personBox[curentBtnIndex].value , "is playing ...." )
+
+        //  let arr = [1,2,3,4,5,6]
+        let diceValue  = 1 + parseInt(Math.random()*6)  // 0 - 6
+
+        // if(personBox[curentBtnIndex].value == "Prashant"){
+        //     diceValue = 6
+        // }
+
+       scoreSpan[curentBtnIndex].innerText = diceValue
+
+        currentBtn.disabled = true
+      }
+
+
+      endGameBtn.addEventListener("click", endGame)
+
+      function endGame(){
+            
+        // find max value out of all scores: 
+        let maxScore = 0
+        for(let t of scoreSpan){
+            // <span> 0 </span>
+            let value = t.innerText
+            if(value>maxScore){
+                maxScore = value
+            }
+            
+        }
+        console.log(maxScore)
+
+        let winnerArr = []
+        for(let i = 0; i<=scoreSpan.length-1; i++){
+            let value = scoreSpan[i].innerText
+            if(value == maxScore){
+                winnerArr.push(personBox[i].value)
+            }
+        }
+
+        // console.log(winnerArr)
+
+
+        winMessageDiv.innerText = winnerArr.join(" and ") + " won the game"
+
+
+
+
+      }
+
+
+      newGamerBtn.addEventListener("click", addNewGamer)
+      function addNewGamer(){
+        //    personBox = document.querySelectorAll("input")
+           let  newGamerDiv = document.createElement("div")
+           newGamerDiv.innerText = "Person"+(personBox.length+1)+": "
+           let newGamerInput = document.createElement("input")
+           newGamerInput.type = "text"
+           let newGamerBtn = document.createElement("button")
+           newGamerBtn.innerText = "Roll the Dice"
+           newGamerBtn.className = "rollTheDice"
+           newGamerBtn.id = "btn"+(personBox.length+1)
+           let newGamerSpan = document.createElement("span")
+           newGamerSpan.innerText = "0"
+           newGamerDiv.append(newGamerInput, newGamerBtn, newGamerSpan)
+           document.querySelector(".gamers").append(newGamerDiv)
+           
+
+      }
+
+
+
+    </script>
+
+
+</body>
+</html>
